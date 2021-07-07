@@ -1,0 +1,28 @@
+{
+  "name": "cadastro",
+  "version": "1.0.0",
+  "description": "cadastro-user\u001b[D\u001b[D\u001b[\u001b[\u001b[C\u001b[C\u001b[ser",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelCss/Cadastro.git"
+  },
+  "author": "Rafael-Carlos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaelCss/Cadastro/issues"
+  },
+  "homepage": "https://github.com/RafaelCss/Cadastro#readme",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "express-validator": "5.3.1",
+    "nedb": "^1.8.0",
+    "type": "module"
+  }
+}
