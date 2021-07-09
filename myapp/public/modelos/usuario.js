@@ -82,31 +82,55 @@ class Usuario{
 
    }
 
+   oJson(){ //método 
+
+      let json = {}
+
+      Object.keys(this).forEach(key=>{
+
+         if(this[key] !== undefined ) json[key] = this[key]
+
+      })
+
+      return json;
+
+   }
+
+
+
    save(){
-         // inserir dados no local storage
+         // inserir dados no banco de dados
 
-        let users = Usuario.pegarUser();
+     return  new Promise ((resolve, reject) =>{
 
-        if(this.id > 0){
 
-         users.map(u=>{
 
-            if(u._id == this.id){
+            let promise;
+   
+          if(this.id){
+   
+           promise = HttpRequest.put(`/users/${this.id}`, this.oJson())
+   
+          }else{
+   
+           promise = HttpRequest.post(`/users`, this.oJson())
+   
+          }
+   
+               promise.then(data => {
+   
+                     this.loadFormJSON(data)
 
-            Object.assign( u,this)
-               
-            }
-            return u;
-         })
+                     resolve(this)
+               }).catch(e=>{
 
-        }else{
+                  reject(e)
 
-            this._id = this.criarNovoId()
-            users.push(this)
-        //    sessionStorage.setItem('users',JSON.stringify(users))
-          
-        }
-        localStorage.setItem('users',JSON.stringify(users))
+               })
+
+         })   
+
+
    }
 
    static pegarUser(){

@@ -33,12 +33,15 @@ addEvento(){// adicionar evento de enviar formulário(submit).
         this.pegarArquivos(this.formularioEle).then((conteudo)=>{
 
             valor.photo = conteudo;
-            valor.save()
-            this.addLinhas(valor);
-            this.formularioEle.reset();
-            btn.disabled = false
-    
+            valor.save().then(user=>{
 
+                this.addLinhas(user);
+                this.formularioEle.reset();
+                btn.disabled = false
+        
+
+            })
+                
         }, function(e){
 
             console.error(e);
@@ -286,15 +289,19 @@ this.formularioAtt.addEventListener('submit', evento =>{
         let user = new Usuario();
 
         user.loadFormJSON(resultado)
-        user.save()
+        user.save().then((user,linhas)=>{
+
+            this.pegarTr(user, linhas)
+            this.contadorDeUsuer();
+            this.botaoEditar(linhas)
+            this.botaoDeletar(linhas)
+            btn.disabled = false
+            this.formularioAtt.reset()
+            this.voltarCadastro();
+
+
+        })
        
-        this.pegarTr(user, linhas)
-        this.contadorDeUsuer();
-        this.botaoEditar(linhas)
-        this.botaoDeletar(linhas)
-        btn.disabled = false
-        this.formularioAtt.reset()
-        this.voltarCadastro();
     }, function(e){
 
         console.error(e);
