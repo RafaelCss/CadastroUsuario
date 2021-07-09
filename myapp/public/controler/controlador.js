@@ -42,7 +42,7 @@ addEvento(){// adicionar evento de enviar formulário(submit).
 
             })
                 
-        }, function(e){
+        }, (e)=>{
 
             console.error(e);
             }
@@ -289,7 +289,7 @@ this.formularioAtt.addEventListener('submit', evento =>{
         let user = new Usuario();
 
         user.loadFormJSON(resultado)
-        user.save().then((user,linhas)=>{
+        user.save().then(user=>{
 
             this.pegarTr(user, linhas)
             this.contadorDeUsuer();
@@ -299,10 +299,9 @@ this.formularioAtt.addEventListener('submit', evento =>{
             this.formularioAtt.reset()
             this.voltarCadastro();
 
-
         })
-       
-    }, function(e){
+
+    }, (e)=>{
 
         console.error(e);
         }

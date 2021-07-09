@@ -52,6 +52,11 @@ class Usuario{
     this._photo = value
    }
 
+
+   set id (value){
+      this._id = value
+     }
+
    loadFormJSON(json){
 
    for (let name in json) {
@@ -62,7 +67,7 @@ class Usuario{
              this[name] =new Date( json[name])
                break
                default :
-                 this[name] = json[name]
+               if(name.substring(0, 1) ==='_')  this[name] = json[name]
          
             }
        }
@@ -103,8 +108,6 @@ class Usuario{
 
      return  new Promise ((resolve, reject) =>{
 
-
-
             let promise;
    
           if(this.id){
@@ -113,7 +116,7 @@ class Usuario{
    
           }else{
    
-           promise = HttpRequest.post(`/users`, this.oJson())
+           promise = HttpRequest.post('/users', this.oJson())
    
           }
    

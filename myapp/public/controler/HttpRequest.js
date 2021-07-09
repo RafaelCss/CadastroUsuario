@@ -24,7 +24,7 @@ class HttpRequest{
         
             ajax.onerror = event =>{
 
-                reject(event)
+                reject(e)
 
             }
 
@@ -36,7 +36,7 @@ class HttpRequest{
                  obj = JSON.parse(ajax.responseText)
                 }catch(e){
                     reject(e)
-                    console.error()
+                    console.error(e)
                 }
                 resolve(obj)        
             }
