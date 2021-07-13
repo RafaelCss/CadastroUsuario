@@ -139,7 +139,7 @@ pegarValores(formularioEle){// pegar os valores do formulário
 
 addLinhas(dadosUsuario){//adicionar linhas na tabela de usuário 
  
- let tr = this.pegarTr(dadosUsuario)
+let tr = this.pegarTr(dadosUsuario)
 this.tabelaEle.appendChild(tr)
 this.contadorDeUsuer()
 
@@ -286,20 +286,23 @@ this.formularioAtt.addEventListener('submit', evento =>{
             resultado._photo= conteudo;
         }
 
-        let user = new Usuario();
+      var user = new Usuario();
 
         user.loadFormJSON(resultado)
+
         user.save().then(user=>{
 
             this.pegarTr(user, linhas)
             this.contadorDeUsuer();
+            this.formularioAtt.reset()
+            btn.disabled = false
+            this.voltarCadastro();
             this.botaoEditar(linhas)
             this.botaoDeletar(linhas)
-            btn.disabled = false
-            this.formularioAtt.reset()
-            this.voltarCadastro();
+
 
         })
+        
 
     }, (e)=>{
 
@@ -311,7 +314,7 @@ this.formularioAtt.addEventListener('submit', evento =>{
     
  }   // botão salvar formulario de edição
 
-botaoDeletar(tr,){// botão delete
+botaoDeletar(tr){// botão delete
     
     tr.querySelector('.btn-danger').addEventListener('click', e =>{
     if(confirm('Deseja excluir usuário ?')){
@@ -319,9 +322,12 @@ botaoDeletar(tr,){// botão delete
        let user =new Usuario();
 
         user.loadFormJSON(JSON.parse(tr.dataset.user))
-        user.remover()
-        tr.remove()
-        this.contadorDeUsuer();
+        user.remover().then(data=>{
+
+            tr.remove()
+            this.contadorDeUsuer();
+
+        })
 
       }
   })
@@ -336,7 +342,7 @@ select(){  // pegar banco de dados
 
      HttpRequest.get('/users').then(data=>{
 
-    data.users.forEach(datauser =>{
+        data.users.forEach(datauser =>{
  
         let user = new Usuario();
 

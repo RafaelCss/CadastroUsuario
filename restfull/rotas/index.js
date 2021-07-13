@@ -1,4 +1,4 @@
-const nedb = require('nedb')
+import nedb from 'nedb'
 
 const bancoDados = new nedb({
     filename : 'usuarios.db',
@@ -6,7 +6,7 @@ const bancoDados = new nedb({
 
 })
 
-module.exports = (app)=>{
+export default (app)=>{
 
     let route = app.route('/users')
 

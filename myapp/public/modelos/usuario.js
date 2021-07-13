@@ -1,4 +1,3 @@
-
 class Usuario{
 
     constructor(name, gender, birth, email, password,admin, photo, country){
@@ -108,23 +107,23 @@ class Usuario{
 
      return  new Promise ((resolve, reject) =>{
 
-            let promise;
+            let promise=0;
    
           if(this.id){
-   
-           promise = HttpRequest.put(`/users/${this.id}`, this.oJson())
-   
-          }else{
-   
-           promise = HttpRequest.post('/users', this.oJson())
-   
+            
+            promise = fetch.put(`/users/${this.id}`, this.oJson())
+             
+         }else{
+            
+            promise = fetch.post('/users', this.oJson())
+            
           }
    
                promise.then(data => {
    
                      this.loadFormJSON(data)
 
-                     resolve(this)
+                     resolve(data)
                }).catch(e=>{
 
                   reject(e)
@@ -137,29 +136,11 @@ class Usuario{
    }
 
    static pegarUser(){
-      let users = [];
-  
-      if(localStorage.getItem('users')){
-  
-          users = JSON.parse(localStorage.getItem('users'))
-      }
-  
-      return users;
+    return Fetch.get('/users')
   }
 
   remover(){
-   let users = Usuario.pegarUser();
-
-   users.forEach((dadosUser, indice) => {
-
-      if(this._id == dadosUser._id){
-
-         users.splice(indice, 1)
-      
-      }
-      
-   });
-   localStorage.setItem('users',JSON.stringify(users))
+     return Fetch.delete(`/users/${this.id}`)
   }
   
 

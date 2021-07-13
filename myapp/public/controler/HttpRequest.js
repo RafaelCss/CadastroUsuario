@@ -33,16 +33,19 @@ class HttpRequest{
                 let obj ={}
 
                 try{
+
                  obj = JSON.parse(ajax.responseText)
+
                 }catch(e){
+
                     reject(e)
                     console.error(e)
                 }
+                
                 resolve(obj)        
             }
 
-            ajax.setRequestHeader('Content-Type', 'application/json')
-
+            ajax.setRequestHeader('Content-Type' , 'application/json')
             ajax.send(JSON.stringify(params))
         })
 

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "cadastro-user\u001b[D\u001b[D\u001b[\u001b[\u001b[C\u001b[C\u001b[ser",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +23,7 @@
     "consign": "^0.1.6",
     "express": "^4.17.1",
     "express-validator": "5.3.1",
-    "nedb": "^1.8.0",
-    "type": "module"
+    "nedb": "^1.8.0"
+  
   }
 }

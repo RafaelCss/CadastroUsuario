@@ -1,11 +1,11 @@
-const express = require('express');
-const consign = require('consign')
-const expressValidator= require ('express-validator');
+import express, { urlencoded, json } from 'express';
+import consign from 'consign';
+import expressValidator from 'express-validator';
 
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(urlencoded({ extended: false }));
+app.use(json());
 app.use(expressValidator());
 
 

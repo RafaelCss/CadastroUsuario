@@ -1,22 +1,19 @@
-module.exports={
+export function user(app, req, res) {
 
-user: (app, req, res, ) =>{
-
-    req.assert('_name', 'O nome é Obrigatório').notEmpty()
+    req.assert('_name', 'O nome é Obrigatório').notEmpty();
     req.assert('_email', 'O e-mail é Obrigatório').notEmpty().isEmail();
 
-    let errors = req.validationErrors()
+    let errors = req.validationErrors();
 
-            if(errors){
+    if (errors) {
 
-                app.utius.error.send(errors, req, res) 
-                return false;
+        app.utius.error.send(errors, req, res);
+        return false;
 
-                } else {
+    } else {
 
-                    return true;
-
-            }
+        return true;
 
     }
+
 }
